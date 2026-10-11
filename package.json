@@ -1,0 +1,4 @@
+{
+  "name": "travel-aa", "version": "2.0.0", "private": true, "type": "module", "license": "MIT",
+  "scripts": { "start": "node server.mjs", "test": "node --test && python -m unittest test_backend", "build": "node build.mjs" }
+}

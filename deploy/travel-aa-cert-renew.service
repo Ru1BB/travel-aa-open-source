@@ -1,0 +1,8 @@
+[Unit]
+Description=Renew Tongxing IP TLS certificate
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/opt/travel-aa-certbot/bin/certbot renew --quiet --config-dir /etc/travel-aa-letsencrypt --work-dir /var/lib/travel-aa-certbot --logs-dir /var/log/travel-aa-certbot --deploy-hook "/usr/sbin/nginx -t && /bin/systemctl reload nginx"

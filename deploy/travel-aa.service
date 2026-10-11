@@ -1,0 +1,27 @@
+[Unit]
+Description=Tongxing shared trip ledger
+After=network.target
+
+[Service]
+Type=simple
+User=travel-aa
+Group=travel-aa
+WorkingDirectory=/srv/travel-aa/web-current
+ExecStart=/usr/bin/python3 /srv/travel-aa/web-current/web_server.py --port __BACKEND_PORT__ --data-dir /var/lib/travel-aa --public-host __PUBLIC_HOST__ --secure-cookie --trust-proxy
+Environment=PYTHONUTF8=1
+EnvironmentFile=-/etc/travel-aa/bootstrap.env
+Restart=on-failure
+RestartSec=3
+UMask=0077
+StateDirectory=travel-aa
+StateDirectoryMode=0700
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/travel-aa
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+MemoryMax=256M
+
+[Install]
+WantedBy=multi-user.target
